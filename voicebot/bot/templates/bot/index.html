@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bot/styles.css' %}">
+    <title>Voice Bot SDK</title>
+</head>
+
+<body>
+    <h1>Voice Bot SDK</h1>
+    <form id="setup-form" method="post" action="{% url 'setup_sdk' %}">
+        {% csrf_token %}
+        <label for="stt_key">Deepgram API Key:</label>
+        <input type="text" id="stt_key" name="stt_key" required><br>
+        <label for="tts_key">TTS API Key:</label>
+        <input type="text" id="tts_key" name="tts_key" required><br>
+        <label for="llm_key">OpenAI API Key:</label>
+        <input type="text" id="llm_key" name="llm_key" required><br>
+        <button type="submit">Setup SDK</button>
+    </form>
+    <div>
+        <button id="start-recording">Start Recording</button>
+        <button id="stop-recording">Stop Recording</button>
+    </div>
+    <audio id="response-audio" controls></audio>
+    <script src="{% static 'bot/main.js' %}"></script>
+</body>
+
+</html>
